@@ -1,0 +1,428 @@
+{
+  "meta": {
+    "title": "SvS Family Planner",
+    "subtitle": "Availability & coverage — State 798",
+    "state": "State 798",
+    "defaultAlliance": "Helm",
+    "serverTimeLabel": "server time (Apocalypse Time)",
+    "updated": "2026-10-16",
+    "store": {
+      "url": "https://store.zapier.com/api/records",
+      "secret": "bc27f900-dcea-4c33-a9af-c01eff435d98",
+      "prefix": "fplan798"
+    }
+  },
+  "tiers": [
+    {
+      "id": "grass",
+      "label": "Grass",
+      "hint": "HQ under 22",
+      "color": "#7dd3a0"
+    },
+    {
+      "id": "mid",
+      "label": "Mid",
+      "hint": "HQ 22–24",
+      "color": "#f4cf88"
+    },
+    {
+      "id": "core",
+      "label": "Core",
+      "hint": "HQ 25+",
+      "color": "#ff9d7a"
+    },
+    {
+      "id": "lead",
+      "label": "Leadership",
+      "hint": "R4 / R5",
+      "color": "#95e4e4"
+    }
+  ],
+  "alliances": [
+    {
+      "rank": 1,
+      "tag": "Helm",
+      "name": "Helm"
+    },
+    {
+      "rank": 2,
+      "tag": "SWT",
+      "name": "SHΛDØW TΞΛM"
+    },
+    {
+      "rank": 3,
+      "tag": "WRtH",
+      "name": "WRÂTH"
+    },
+    {
+      "rank": 4,
+      "tag": "mERC",
+      "name": "Mercenary"
+    },
+    {
+      "rank": 5,
+      "tag": "aTam",
+      "name": "TÜRK HUN"
+    },
+    {
+      "rank": 6,
+      "tag": "4NG",
+      "name": "GOT4NG"
+    },
+    {
+      "rank": 7,
+      "tag": "UpS",
+      "name": "UrPainService"
+    },
+    {
+      "rank": 8,
+      "tag": "Ayaa",
+      "name": "Ayaaa"
+    },
+    {
+      "rank": 9,
+      "tag": "E45Y",
+      "name": "NoStress"
+    },
+    {
+      "rank": 10,
+      "tag": "7cie",
+      "name": "7cie"
+    },
+    {
+      "rank": 11,
+      "tag": "SHSN",
+      "name": "Shad0wSyndicate"
+    },
+    {
+      "rank": 12,
+      "tag": "movR",
+      "name": "Moving Slowly"
+    },
+    {
+      "rank": 13,
+      "tag": "ULD",
+      "name": "UNYIELDING"
+    },
+    {
+      "rank": 14,
+      "tag": "for1",
+      "name": "FOR"
+    },
+    {
+      "rank": 15,
+      "tag": "DMNI",
+      "name": "D0MINION"
+    },
+    {
+      "rank": 16,
+      "tag": "WHAN",
+      "name": "White Angels"
+    },
+    {
+      "rank": 17,
+      "tag": "EzE",
+      "name": "Endzeit Elite"
+    },
+    {
+      "rank": 18,
+      "tag": "mo7",
+      "name": "اربوك"
+    },
+    {
+      "rank": 19,
+      "tag": "ZOAT",
+      "name": "Zombie Attack"
+    },
+    {
+      "rank": 20,
+      "tag": "TMJ",
+      "name": "Na paz de Deus"
+    },
+    {
+      "rank": 21,
+      "tag": "ADAF",
+      "name": "WASDFR"
+    },
+    {
+      "rank": 22,
+      "tag": "RE15",
+      "name": "ROSILLO"
+    },
+    {
+      "rank": 23,
+      "tag": "Mesi",
+      "name": "FORCE"
+    },
+    {
+      "rank": 24,
+      "tag": "7815",
+      "name": "les Templier"
+    },
+    {
+      "rank": 25,
+      "tag": "COYO",
+      "name": "COYOTES"
+    },
+    {
+      "rank": 26,
+      "tag": "GiD",
+      "name": "garudahindonesia"
+    },
+    {
+      "rank": 27,
+      "tag": "MPS1",
+      "name": "Melding Pot"
+    },
+    {
+      "rank": 28,
+      "tag": "RRRS",
+      "name": "RRSS"
+    },
+    {
+      "rank": 29,
+      "tag": "ASL1",
+      "name": "AllStarLeague"
+    },
+    {
+      "rank": 30,
+      "tag": "TTYC",
+      "name": "schifxu"
+    },
+    {
+      "rank": 31,
+      "tag": "UpS2",
+      "name": "UrPainService"
+    }
+  ],
+  "phases": [
+    {
+      "id": "clash",
+      "label": "Capital Clash · Saturday",
+      "note": "Capital and turrets leave protection 12:00–14:00 server time. Positioning opens 00:30. Hold-percentage decides the win, not total kills. All times are server time.",
+      "cols": [
+        {
+          "id": "b00",
+          "label": "00:00"
+        },
+        {
+          "id": "b02",
+          "label": "02:00"
+        },
+        {
+          "id": "b04",
+          "label": "04:00"
+        },
+        {
+          "id": "b06",
+          "label": "06:00"
+        },
+        {
+          "id": "b08",
+          "label": "08:00"
+        },
+        {
+          "id": "b10",
+          "label": "10:00"
+        },
+        {
+          "id": "b12",
+          "label": "12:00"
+        },
+        {
+          "id": "b14",
+          "label": "14:00"
+        },
+        {
+          "id": "b16",
+          "label": "16:00"
+        },
+        {
+          "id": "b18",
+          "label": "18:00"
+        },
+        {
+          "id": "b20",
+          "label": "20:00"
+        },
+        {
+          "id": "b22",
+          "label": "22:00"
+        }
+      ],
+      "rows": [
+        {
+          "id": "capital",
+          "label": "Capital garrison",
+          "detail": "Strongest accounts, full-health formations, rotate every 45–60 min.",
+          "wants": "core",
+          "min": 2
+        },
+        {
+          "id": "turret",
+          "label": "Turret garrison (×4)",
+          "detail": "Each turret holds 10. Holding them bleeds the enemy capital 1% per tick.",
+          "wants": "core",
+          "min": 4
+        },
+        {
+          "id": "rally",
+          "label": "Rally lead",
+          "detail": "3–5 rally accounts, full-capacity marches only. Rotate leads to beat fatigue.",
+          "wants": "lead",
+          "min": 3
+        },
+        {
+          "id": "reinforce",
+          "label": "Reinforcement coordination",
+          "detail": "Refill marches to full before each send; recall half-capacity marches.",
+          "wants": "mid",
+          "min": 2
+        },
+        {
+          "id": "mud",
+          "label": "Mud pressure / clear",
+          "detail": "Pressure enemy HQs and clear the brown dirt around the capital.",
+          "wants": "mid",
+          "min": 3
+        },
+        {
+          "id": "ruins",
+          "label": "Ruins clearing",
+          "detail": "Claim destroyed-HQ tiles quickly before the enemy teleports in.",
+          "wants": "mid",
+          "min": 2
+        },
+        {
+          "id": "snipe",
+          "label": "Point farm · HQ snipes",
+          "detail": "Knock out unshielded enemy HQs in the capital / Lv6 area — 50k points each.",
+          "wants": "grass",
+          "min": 3
+        },
+        {
+          "id": "reserve",
+          "label": "Reserve / on-call backup",
+          "detail": "Pinged to plug a gap or stand in for a core player whose phone dies.",
+          "wants": "grass",
+          "min": 3
+        }
+      ]
+    },
+    {
+      "id": "prep",
+      "label": "Prep phase · Sunday–Friday",
+      "note": "Prep points decide which state invades on Saturday. Everyone contributes daily — this is where the war is really won. All times are server time.",
+      "cols": [
+        {
+          "id": "sun",
+          "label": "Sun"
+        },
+        {
+          "id": "mon",
+          "label": "Mon"
+        },
+        {
+          "id": "tue",
+          "label": "Tue"
+        },
+        {
+          "id": "wed",
+          "label": "Wed"
+        },
+        {
+          "id": "thu",
+          "label": "Thu"
+        },
+        {
+          "id": "fri",
+          "label": "Fri"
+        }
+      ],
+      "rows": [
+        {
+          "id": "duel",
+          "label": "Alliance Duel",
+          "detail": "6,000 per member for 1st place + 30,000 alliance-wide per win.",
+          "wants": "grass",
+          "min": 0
+        },
+        {
+          "id": "furylord",
+          "label": "Furylord damage",
+          "detail": "Top-200 damage on the state scoreboard feeds state points.",
+          "wants": "mid",
+          "min": 0
+        },
+        {
+          "id": "arena",
+          "label": "Arena",
+          "detail": "Champion is 20,000 state points. Max your heroes before reset.",
+          "wants": "mid",
+          "min": 0
+        },
+        {
+          "id": "truck",
+          "label": "Truck raids",
+          "detail": "100 points each and low risk — easy points that add up.",
+          "wants": "grass",
+          "min": 0
+        },
+        {
+          "id": "prepared",
+          "label": "Full Preparedness",
+          "detail": "Stack builds and training with the daily theme.",
+          "wants": "grass",
+          "min": 0
+        },
+        {
+          "id": "train",
+          "label": "Troop training (off-queue)",
+          "detail": "Keep training queues running and apply speedups so you are loaded for Saturday.",
+          "wants": "grass",
+          "min": 0
+        }
+      ]
+    }
+  ],
+  "guide": {
+    "headline": "You are not here to bubble and watch.",
+    "intro": "Bubbling protects your base — it is not a job. Every member, at every HQ level, has real ways to score points and help us hold the capital. Pick your tier, pick a block on the board, and cover it.",
+    "tiers": [
+      {
+        "id": "grass",
+        "title": "Grass · HQ under 22",
+        "bullets": [
+          "Reinforce the Capital and Turrets. You score from deployment time and from every kill your stationed troops make — and your own base never leaves its shield.",
+          "Garrison a turret slot. Each turret only holds 10 troops, so a full slot matters more than power. Turret kills are your points.",
+          "Farm safe points: truck raids (+100 each), Full Preparedness, and your daily Alliance Duel participation.",
+          "Join rallies when a lead calls one — joining scores without risking your base.",
+          "Be the reserve. When a core player drops offline you keep their slot warm. This is a real job and we will ping you for it.",
+          "Keep healing and retraining so you always have troops ready to send."
+        ]
+      },
+      {
+        "id": "mid",
+        "title": "Mid · HQ 22–24",
+        "bullets": [
+          "Mud pressure — clear the brown dirt around the capital and pressure enemy HQs.",
+          "Ruins clearing — when an HQ is destroyed, claim that tile before the enemy teleports in. This decides who owns the space.",
+          "Reinforcement coordination — refill every march to full capacity before it lands and recall half-capacity marches.",
+          "Stage your own base in the brown mud before Saturday; HQ24+ in the dirt is a wall the invader has to spend resources breaking.",
+          "Bank heals, teleports and speedups before the event — running out mid-fight ends your participation."
+        ]
+      },
+      {
+        "id": "core",
+        "title": "Core · HQ 25+ and Leadership",
+        "bullets": [
+          "Hold the Capital and the Turrets. Garrison in full-health formations and cycle damaged defenders out immediately.",
+          "Lead rallies — 3–5 strong accounts, every march at full capacity. Rotate rally leads every 45–60 min so nobody fatigues.",
+          "Name a backup who is online across your window. If you are called away, they take your garrisons and the slot never goes cold.",
+          "Protect your HQ: stage it inside the mud before Saturday, shield when you sleep, and do not leave it exposed while away from the phone.",
+          "Post your availability below — leads use it to build the rotation and to close gaps before the clash starts."
+        ]
+      }
+    ]
+  }
+}

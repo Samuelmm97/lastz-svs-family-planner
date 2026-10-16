@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SvS Family Planner · State 798</title>
+<style>
+:root{color-scheme:dark;--bg:#121d22;--panel:#17292b;--panel2:#1e3438;--line:#3d5a5f;--ink:#edf3f5;--dim:#bdcbd1;--accent:#95e4e2;
+--grass:#7dd3a0;--mid:#f4cf88;--core:#ff9d7a;--lead:#95e4e4;--gap:#ff7a6b;--thin:#f4cf88;--ok:#7dd3a0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:1250px;margin:auto;padding:16px}
+h1{margin:0;font-size:24px}h2{margin:0 0 8px;font-size:19px}h3{margin:16px 0 6px;font-size:15px}
+p{margin:6px 0;color:var(--dim)}a{color:var(--accent)}
+.hdr{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-start}
+.sub{color:var(--dim);font-size:13px;margin:2px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--panel2);border:1px solid var(--line);white-space:nowrap}
+.tier{font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--line)}
+.t-grass{color:var(--grass);border-color:var(--grass)}.t-mid{color:var(--mid);border-color:var(--mid)}.t-core{color:var(--core);border-color:var(--core)}.t-lead{color:var(--lead);border-color:var(--lead)}
+nav{display:flex;gap:6px;margin:16px 0 10px;flex-wrap:wrap}
+nav button{background:var(--panel);color:var(--dim);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--accent);color:#0c1416;border-color:var(--accent);font-weight:700}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px;margin:10px 0}
+label{display:block;font-size:13px;color:var(--dim);margin:10px 0 3px}
+input,select,textarea{width:100%;padding:9px;border-radius:8px;border:1px solid var(--line);background:#0f1c20;color:var(--ink);font:inherit}
+textarea{min-height:70px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:620px){.row{grid-template-columns:1fr}}
+button.act{background:var(--accent);color:#0c1416;border:0;border-radius:8px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;margin-top:12px}
+button.ghost{background:transparent;color:var(--dim);border:1px solid var(--line);border-radius:8px;padding:9px 14px;font:inherit;cursor:pointer;margin:12px 8px 0 0}
+button.danger{background:#5a2620;color:#ffd7d0;border:1px solid #8b3a30}
+.phasebar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.phasebar button{background:var(--panel2);color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font:inherit;cursor:pointer}
+.phasebar button[aria-pressed="true"]{background:var(--accent);color:#0c1416;border-color:var(--accent);font-weight:700}
+.note{font-size:13px;color:var(--dim);margin:6px 0 12px}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:separate;border-spacing:0;font-size:13px}
+th,td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:0}
+thead th{position:sticky;top:0;background:#203239;padding:7px 6px;font-size:12px;white-space:nowrap;z-index:2}
+td.rowh,th.rowh{position:sticky;left:0;background:var(--panel2);text-align:left;padding:8px 10px;min-width:190px;max-width:230px;z-index:1}
+th.rowh{z-index:3}
+.rowlab{font-weight:600;display:block}
+.rowdet{font-size:11px;color:var(--dim);display:block;line-height:1.35}
+.cell{display:block;width:100%;min-width:58px;min-height:44px;background:transparent;border:0;color:var(--ink);font:inherit;cursor:pointer;padding:5px 4px;border-radius:6px;text-align:center}
+.cell b{font-weight:700}
+.cell .mini{font-size:10px;color:var(--dim)}
+.st-gap{background:#3a1a17}.st-gap b{color:var(--gap)}
+.st-thin{background:#33280f}.st-thin b{color:var(--thin)}
+.st-ok{background:#12302a}.st-ok b{color:var(--ok)}
+.st-none{background:#16282c}
+.st-some{background:#12302a}
+.cell.sel{outline:2px solid var(--accent);outline-offset:-2px}
+.cell.mine{box-shadow:inset 0 0 0 2px var(--accent)}
+.availrow td.rowh{background:#243c40}
+.availcell{background:#16282c}.availcell.on{background:#12302a;color:var(--ok);font-weight:700}
+.detail{margin-top:12px}
+.plist{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.pill{display:inline-flex;gap:6px;align-items:center;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:13px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--dim);margin:8px 0}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.gaps li{margin:4px 0}
+.warn{border-left:3px solid var(--gap);background:#241213;padding:8px 10px;border-radius:6px;margin:6px 0}
+.warn.low{border-color:var(--thin);background:#231c0f}
+.card{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;background:var(--panel2)}
+.card h3{margin-top:0}
+.card ul{margin:6px 0 0;padding-left:20px}.card li{margin:5px 0}
+.status{font-size:12px;color:var(--dim)}
+footer{margin:20px 0 40px;font-size:12px;color:#9bb0ba;line-height:1.6}
+code{background:#0f1c20;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:12px}
+@media print{body{background:#fff;color:#111}nav,.phasebar,button,.hdr .chips{display:none}main{max-width:none}.tblwrap{overflow:visible}th,td{border-color:#999}thead th,td.rowh{background:#eee;color:#111;position:static}.cell{color:#111}}
+</style>
+</head>
+<body id="root">
+<main>
+  <div class="hdr">
+    <div>
+      <h1 id="title">SvS Family Planner</h1>
+      <p class="sub" id="subtitle">Availability &amp; coverage — State 798</p>
+      <p class="sub" id="clock"></p>
+    </div>
+    <div class="chips">
+      <span class="chip" id="whoami">Not signed in</span>
+      <span class="chip" id="syncstatus">Local only</span>
+      <button class="ghost" id="btn-sync" style="margin:0">Sync</button>
+    </div>
+  </div>
+
+  <nav id="tabs">
+    <button data-tab="me" aria-selected="true">My availability</button>
+    <button data-tab="board" aria-selected="false">Coverage board</button>
+    <button data-tab="guide" aria-selected="false">What can I do?</button>
+    <button data-tab="tools" aria-selected="false">Share / backup</button>
+  </nav>
+
+  <section id="tab-me">
+    <div class="panel">
+      <h2>Tell us when you can be online</h2>
+      <p class="note">Fill this in once, then open the <b>Coverage board</b> to volunteer for the slots you can cover. All times are <span id="srvlabel">server time</span>.</p>
+      <div class="row">
+        <div><label for="f-name">In-game name (IGN)</label><input id="f-name" placeholder="e.g. Ahmed" autocomplete="off"></div>
+        <div><label for="f-alliance">Alliance</label><select id="f-alliance"></select></div>
+      </div>
+      <div class="row">
+        <div><label for="f-tier">Tier</label><select id="f-tier"></select></div>
+        <div><label for="f-hq">HQ level</label><input id="f-hq" type="number" min="1" max="40" placeholder="e.g. 26" inputmode="numeric"></div>
+      </div>
+      <div class="row">
+        <div><label for="f-tz">My local UTC offset (optional)</label><select id="f-tz"></select></div>
+        <div><label for="f-backup">I am backup for (comma-separated names)</label><input id="f-backup" placeholder="e.g. Kraken, Ahmed"></div>
+      </div>
+      <label for="f-note">Anything else leads should know</label><textarea id="f-note" placeholder="e.g. can lead rallies; offline 14:00–16:00 for work; only have heal speedups"></textarea>
+      <button class="act" id="btn-save">Save to shared plan</button>
+      <button class="ghost" id="btn-load">Load my entry</button>
+      <button class="ghost danger" id="btn-del">Remove me</button>
+      <p class="status" id="me-status"></p>
+    </div>
+  </section>
+
+  <section id="tab-board" hidden>
+    <div class="phasebar" id="phasebar"></div>
+    <p class="note" id="phasenote"></p>
+    <div class="panel" style="padding:10px">
+      <div class="legend">
+        <span><i style="background:#3a1a17"></i>Needs people</span>
+        <span><i style="background:#33280f"></i>Below target</span>
+        <span><i style="background:#12302a"></i>Covered</span>
+        <span><i style="background:#16282c"></i>Open</span>
+      </div>
+      <div class="tblwrap" id="boardwrap"></div>
+      <div class="detail" id="detail"></div>
+    </div>
+    <div class="panel">
+      <h2>Coverage summary</h2>
+      <div id="summary"></div>
+    </div>
+    <div class="panel">
+      <h2>Core players without a backup online</h2>
+      <div id="backups"></div>
+    </div>
+  </section>
+
+  <section id="tab-guide" hidden>
+    <div class="panel">
+      <h2 id="guide-head"></h2>
+      <p class="note" id="guide-intro"></p>
+    </div>
+    <div id="guide-body"></div>
+  </section>
+
+  <section id="tab-tools" hidden>
+    <div class="panel">
+      <h2>Share &amp; backup</h2>
+      <p class="note">Everyone who opens this page and taps <b>Save to shared plan</b> lands in the same shared sheet — no logins. The share sheet is a coordination aid, not a secure system.</p>
+      <h3>Export everyone (JSON)</h3>
+      <textarea id="ex-json" readonly></textarea>
+      <button class="ghost" id="btn-copy">Copy</button>
+      <button class="ghost" id="btn-download">Download .json</button>
+      <h3>Import / merge</h3>
+      <textarea id="im-json" placeholder="Paste an exported JSON here, or roster lines like  Name | Alliance"></textarea>
+      <button class="act" id="btn-import">Import &amp; merge</button>
+      <p class="status" id="import-status"></p>
+      <h3>Quick roster</h3>
+      <p class="note">One name per line (optionally <code>Name | Alliance</code>) to seed the board before the event.</p>
+      <textarea id="im-lines" placeholder="Ahmed | Helm&#10;Kraken | Helm"></textarea>
+      <button class="ghost" id="btn-lines">Add names</button>
+      <p class="status" id="lines-status"></p>
+    </div>
+  </section>
+
+  <footer id="foot"></footer>
+</main>
+<script>
+globalThis.__DATA__ = {"meta": {"title": "SvS Family Planner", "subtitle": "Availability & coverage — State 798", "state": "State 798", "defaultAlliance": "Helm", "serverTimeLabel": "server time (Apocalypse Time)", "updated": "2026-10-16", "store": {"url": "https://store.zapier.com/api/records", "secret": "bc27f900-dcea-4c33-a9af-c01eff435d98", "prefix": "fplan798"}}, "tiers": [{"id": "grass", "label": "Grass", "hint": "HQ under 22", "color": "#7dd3a0"}, {"id": "mid", "label": "Mid", "hint": "HQ 22–24", "color": "#f4cf88"}, {"id": "core", "label": "Core", "hint": "HQ 25+", "color": "#ff9d7a"}, {"id": "lead", "label": "Leadership", "hint": "R4 / R5", "color": "#95e4e4"}], "alliances": [{"rank": 1, "tag": "Helm", "name": "Helm"}, {"rank": 2, "tag": "SWT", "name": "SHΛDØW TΞΛM"}, {"rank": 3, "tag": "WRtH", "name": "WRÂTH"}, {"rank": 4, "tag": "mERC", "name": "Mercenary"}, {"rank": 5, "tag": "aTam", "name": "TÜRK HUN"}, {"rank": 6, "tag": "4NG", "name": "GOT4NG"}, {"rank": 7, "tag": "UpS", "name": "UrPainService"}, {"rank": 8, "tag": "Ayaa", "name": "Ayaaa"}, {"rank": 9, "tag": "E45Y", "name": "NoStress"}, {"rank": 10, "tag": "7cie", "name": "7cie"}, {"rank": 11, "tag": "SHSN", "name": "Shad0wSyndicate"}, {"rank": 12, "tag": "movR", "name": "Moving Slowly"}, {"rank": 13, "tag": "ULD", "name": "UNYIELDING"}, {"rank": 14, "tag": "for1", "name": "FOR"}, {"rank": 15, "tag": "DMNI", "name": "D0MINION"}, {"rank": 16, "tag": "WHAN", "name": "White Angels"}, {"rank": 17, "tag": "EzE", "name": "Endzeit Elite"}, {"rank": 18, "tag": "mo7", "name": "اربوك"}, {"rank": 19, "tag": "ZOAT", "name": "Zombie Attack"}, {"rank": 20, "tag": "TMJ", "name": "Na paz de Deus"}, {"rank": 21, "tag": "ADAF", "name": "WASDFR"}, {"rank": 22, "tag": "RE15", "name": "ROSILLO"}, {"rank": 23, "tag": "Mesi", "name": "FORCE"}, {"rank": 24, "tag": "7815", "name": "les Templier"}, {"rank": 25, "tag": "COYO", "name": "COYOTES"}, {"rank": 26, "tag": "GiD", "name": "garudahindonesia"}, {"rank": 27, "tag": "MPS1", "name": "Melding Pot"}, {"rank": 28, "tag": "RRRS", "name": "RRSS"}, {"rank": 29, "tag": "ASL1", "name": "AllStarLeague"}, {"rank": 30, "tag": "TTYC", "name": "schifxu"}, {"rank": 31, "tag": "UpS2", "name": "UrPainService"}], "phases": [{"id": "clash", "label": "Capital Clash · Saturday", "note": "Capital and turrets leave protection 12:00–14:00 server time. Positioning opens 00:30. Hold-percentage decides the win, not total kills. All times are server time.", "cols": [{"id": "b00", "label": "00:00"}, {"id": "b02", "label": "02:00"}, {"id": "b04", "label": "04:00"}, {"id": "b06", "label": "06:00"}, {"id": "b08", "label": "08:00"}, {"id": "b10", "label": "10:00"}, {"id": "b12", "label": "12:00"}, {"id": "b14", "label": "14:00"}, {"id": "b16", "label": "16:00"}, {"id": "b18", "label": "18:00"}, {"id": "b20", "label": "20:00"}, {"id": "b22", "label": "22:00"}], "rows": [{"id": "capital", "label": "Capital garrison", "detail": "Strongest accounts, full-health formations, rotate every 45–60 min.", "wants": "core", "min": 2}, {"id": "turret", "label": "Turret garrison (×4)", "detail": "Each turret holds 10. Holding them bleeds the enemy capital 1% per tick.", "wants": "core", "min": 4}, {"id": "rally", "label": "Rally lead", "detail": "3–5 rally accounts, full-capacity marches only. Rotate leads to beat fatigue.", "wants": "lead", "min": 3}, {"id": "reinforce", "label": "Reinforcement coordination", "detail": "Refill marches to full before each send; recall half-capacity marches.", "wants": "mid", "min": 2}, {"id": "mud", "label": "Mud pressure / clear", "detail": "Pressure enemy HQs and clear the brown dirt around the capital.", "wants": "mid", "min": 3}, {"id": "ruins", "label": "Ruins clearing", "detail": "Claim destroyed-HQ tiles quickly before the enemy teleports in.", "wants": "mid", "min": 2}, {"id": "snipe", "label": "Point farm · HQ snipes", "detail": "Knock out unshielded enemy HQs in the capital / Lv6 area — 50k points each.", "wants": "grass", "min": 3}, {"id": "reserve", "label": "Reserve / on-call backup", "detail": "Pinged to plug a gap or stand in for a core player whose phone dies.", "wants": "grass", "min": 3}]}, {"id": "prep", "label": "Prep phase · Sunday–Friday", "note": "Prep points decide which state invades on Saturday. Everyone contributes daily — this is where the war is really won. All times are server time.", "cols": [{"id": "sun", "label": "Sun"}, {"id": "mon", "label": "Mon"}, {"id": "tue", "label": "Tue"}, {"id": "wed", "label": "Wed"}, {"id": "thu", "label": "Thu"}, {"id": "fri", "label": "Fri"}], "rows": [{"id": "duel", "label": "Alliance Duel", "detail": "6,000 per member for 1st place + 30,000 alliance-wide per win.", "wants": "grass", "min": 0}, {"id": "furylord", "label": "Furylord damage", "detail": "Top-200 damage on the state scoreboard feeds state points.", "wants": "mid", "min": 0}, {"id": "arena", "label": "Arena", "detail": "Champion is 20,000 state points. Max your heroes before reset.", "wants": "mid", "min": 0}, {"id": "truck", "label": "Truck raids", "detail": "100 points each and low risk — easy points that add up.", "wants": "grass", "min": 0}, {"id": "prepared", "label": "Full Preparedness", "detail": "Stack builds and training with the daily theme.", "wants": "grass", "min": 0}, {"id": "train", "label": "Troop training (off-queue)", "detail": "Keep training queues running and apply speedups so you are loaded for Saturday.", "wants": "grass", "min": 0}]}], "guide": {"headline": "You are not here to bubble and watch.", "intro": "Bubbling protects your base — it is not a job. Every member, at every HQ level, has real ways to score points and help us hold the capital. Pick your tier, pick a block on the board, and cover it.", "tiers": [{"id": "grass", "title": "Grass · HQ under 22", "bullets": ["Reinforce the Capital and Turrets. You score from deployment time and from every kill your stationed troops make — and your own base never leaves its shield.", "Garrison a turret slot. Each turret only holds 10 troops, so a full slot matters more than power. Turret kills are your points.", "Farm safe points: truck raids (+100 each), Full Preparedness, and your daily Alliance Duel participation.", "Join rallies when a lead calls one — joining scores without risking your base.", "Be the reserve. When a core player drops offline you keep their slot warm. This is a real job and we will ping you for it.", "Keep healing and retraining so you always have troops ready to send."]}, {"id": "mid", "title": "Mid · HQ 22–24", "bullets": ["Mud pressure — clear the brown dirt around the capital and pressure enemy HQs.", "Ruins clearing — when an HQ is destroyed, claim that tile before the enemy teleports in. This decides who owns the space.", "Reinforcement coordination — refill every march to full capacity before it lands and recall half-capacity marches.", "Stage your own base in the brown mud before Saturday; HQ24+ in the dirt is a wall the invader has to spend resources breaking.", "Bank heals, teleports and speedups before the event — running out mid-fight ends your participation."]}, {"id": "core", "title": "Core · HQ 25+ and Leadership", "bullets": ["Hold the Capital and the Turrets. Garrison in full-health formations and cycle damaged defenders out immediately.", "Lead rallies — 3–5 strong accounts, every march at full capacity. Rotate rally leads every 45–60 min so nobody fatigues.", "Name a backup who is online across your window. If you are called away, they take your garrisons and the slot never goes cold.", "Protect your HQ: stage it inside the mud before Saturday, shield when you sleep, and do not leave it exposed while away from the phone.", "Post your availability below — leads use it to build the rotation and to close gaps before the clash starts."]}]}};
+const Core = (() => {
+  const data = globalThis.__DATA__;
+  const norm = s => String(s||"").normalize("NFKD").toLowerCase().replace(/\p{M}/gu,"").replace(/[^\p{L}\p{N}]/gu,"");
+  const phase = id => data.phases.find(p => p.id === id);
+  const tier = id => data.tiers.find(t => t.id === id);
+  const tierOrder = ["grass","mid","core","lead"];
+
+  function newState(){ return {members:{}, cfg:{serverOffsetMin:0}}; }
+  function newEntry(name){ return {name:name||"", alliance:data.meta.defaultAlliance, tier:"grass", hq:null, tz:null, note:"", backupFor:[], avail:{}, tasks:{}, updated:null}; }
+  function entryFor(state,name){ return state.members[norm(name)] || null; }
+  function setEntry(state, entry){ entry.updated = new Date().toISOString(); state.members[norm(entry.name)] = entry; return entry; }
+  function removeEntry(state,name){ delete state.members[norm(name)]; }
+  function cellId(phaseId,rowId,colId){ return phaseId+"|"+rowId+"|"+colId; }
+  function cellParts(id){ const a=String(id).split("|"); return {phaseId:a[0],rowId:a[1],colId:a[2]}; }
+  function availCols(entry,phaseId){ return (entry.avail && entry.avail[phaseId]) || []; }
+  function isOnline(entry, phaseId, colId){
+    if(availCols(entry,phaseId).indexOf(colId) !== -1) return true;
+    const p = phase(phaseId);
+    return p.rows.some(r => entry.tasks && entry.tasks[cellId(phaseId,r.id,colId)]);
+  }
+  function onlineInCol(state, phaseId, colId){
+    return Object.values(state.members).filter(e => isOnline(e,phaseId,colId));
+  }
+  function volunteers(state, phaseId, rowId, colId){
+    const id = cellId(phaseId,rowId,colId);
+    return Object.values(state.members).filter(e => e.tasks && e.tasks[id]);
+  }
+  function coverage(state, phaseId){
+    const p = phase(phaseId); const cells = {}; const head = {}; const gaps = [];
+    for(const c of p.cols){
+      const online = onlineInCol(state,phaseId,c.id);
+      const byTier = {grass:0,mid:0,core:0,lead:0};
+      online.forEach(e => { byTier[e.tier] = (byTier[e.tier]||0)+1; });
+      head[c.id] = {byTier, total:online.length, people:online.map(e => e.name)};
+      for(const r of p.rows){
+        const people = volunteers(state,phaseId,r.id,c.id);
+        const min = r.min||0; const n = people.length;
+        const status = min===0 ? (n>0?"some":"none") : (n===0?"gap":(n<min?"thin":"ok"));
+        cells[cellId(phaseId,r.id,c.id)] = {count:n,min,status,people:people.map(e => ({name:e.name,tier:e.tier}))};
+      }
+    }
+    for(const r of p.rows){ if((r.min||0)<=0) continue;
+      for(const c of p.cols){ const cl = cells[cellId(phaseId,r.id,c.id)];
+        if(cl.status==="gap" || cl.status==="thin") gaps.push({rowId:r.id,rowLabel:r.label,wants:r.wants,colId:c.id,colLabel:c.label,status:cl.status,count:cl.count,min:cl.min}); }
+    }
+    return {cells,head,gaps};
+  }
+  function backupGaps(state, phaseId){
+    const p = phase(phaseId); const out = [];
+    for(const c of p.cols){
+      const online = onlineInCol(state,phaseId,c.id);
+      for(const m of online){
+        if(m.tier!=="core" && m.tier!=="lead") continue;
+        const declared = online.filter(o => o!==m && (o.backupFor||[]).some(n => norm(n)===norm(m.name)));
+        const support  = online.filter(o => o!==m && (o.tier==="mid"||o.tier==="core"||o.tier==="lead"));
+        if(declared.length===0){
+          out.push({colId:c.id,colLabel:c.label,member:m.name,tier:m.tier,
+                    severity: support.length===0?"high":"low", support:support.length});
+        }
+      }
+    }
+    return out;
+  }
+  function localLabel(serverLabel, tz, serverOffsetMin){
+    if(tz===null || tz===undefined || tz==="") return "";
+    const h = Number(String(serverLabel).split(":")[0]);
+    let mins = h*60 + (Number(tz)*60 - Number(serverOffsetMin||0));
+    mins = ((mins % 1440) + 1440) % 1440;
+    return String(Math.floor(mins/60)).padStart(2,"0") + ":" + String(mins%60).padStart(2,"0");
+  }
+  function validate(entry){
+    const errs = [];
+    if(!entry.name || !String(entry.name).trim()) errs.push("Enter your in-game name.");
+    if(entry.hq!=null && entry.hq!=="" && (isNaN(Number(entry.hq)) || Number(entry.hq)<1)) errs.push("HQ level must be a number.");
+    if(entry.tier && tierOrder.indexOf(entry.tier)===-1) errs.push("Pick a tier.");
+    return {ok:errs.length===0, errors:errs};
+  }
+  function exportJSON(state){
+    return JSON.stringify({v:1, exported:new Date().toISOString(), members:Object.values(state.members)}, null, 2);
+  }
+  function importJSON(text, state){
+    let obj; try { obj = JSON.parse(text); } catch(e){ throw new Error("That is not valid JSON."); }
+    const list = Array.isArray(obj) ? obj : (obj.members || []);
+    let added=0, updated=0;
+    for(const raw of list){
+      if(!raw || !raw.name) continue;
+      const e = Object.assign(newEntry(raw.name), raw);
+      e.avail = e.avail||{}; e.tasks = e.tasks||{}; e.backupFor = e.backupFor||[];
+      if(state.members[norm(e.name)]) updated++; else added++;
+      state.members[norm(e.name)] = e;
+    }
+    return {added,updated};
+  }
+  function parseLines(text, state){
+    let added = 0;
+    for(const line of String(text||"").split(/\r?\n/)){
+      const t = line.trim(); if(!t || t.charAt(0)==="#") continue;
+      const parts = t.split(/\s*[|,;]\s*/);
+      const name = (parts[0]||"").trim(); if(!name) continue;
+      const key = norm(name); if(state.members[key]) continue;
+      const e = newEntry(name); e.alliance = (parts[1]||"").trim() || data.meta.defaultAlliance; e.placeholder = true;
+      state.members[key] = e; added++;
+    }
+    return {added};
+  }
+  function memberKey(name){ return data.meta.store.prefix + ":m:" + norm(name); }
+  function isMemberKey(k){ return String(k).indexOf(data.meta.store.prefix + ":m:") === 0; }
+  function mergeRecords(state, all){
+    let n = 0;
+    for(const k of Object.keys(all||{})){
+      if(!isMemberKey(k)) continue;
+      let e; try { e = JSON.parse(all[k]); } catch(err){ continue; }
+      if(!e || !e.name) continue;
+      const key = norm(e.name), cur = state.members[key];
+      if(!cur || (e.updated||"") > (cur.updated||"")){ state.members[key] = e; n++; }
+    }
+    return n;
+  }
+  return {data,norm,phase,tier,tierOrder,newState,newEntry,entryFor,setEntry,removeEntry,cellId,cellParts,
+          availCols,isOnline,onlineInCol,volunteers,coverage,backupGaps,localLabel,validate,exportJSON,importJSON,parseLines,
+          memberKey,isMemberKey,mergeRecords};
+})();
+globalThis.Core = Core;
+
+function initUI(){
+  const D = Core.data, STORE = D.meta.store;
+  const LS_STATE = "fplan798.state.v1", LS_ME = "fplan798.me.v1";
+  let state = Core.newState();
+  let me = "";
+  let curPhase = D.phases[0].id;
+  let sel = null;
+  const $ = id => document.getElementById(id);
+
+  function loadLocal(){
+    try { const s = JSON.parse(localStorage.getItem(LS_STATE)||"null"); if(s && s.members) state = s; } catch(e){}
+    try { me = localStorage.getItem(LS_ME)||""; } catch(e){}
+  }
+  function saveLocal(){ try { localStorage.setItem(LS_STATE, JSON.stringify(state)); } catch(e){} }
+  function setMe(n){ me = n||""; try { localStorage.setItem(LS_ME, me); } catch(e){} renderIdentity(); }
+  function myEntry(){ return me ? Core.entryFor(state, me) : null; }
+
+  // ---- shared store ----
+  function storeURL(extra){ let u = STORE.url + "?secret=" + encodeURIComponent(STORE.secret); return extra ? u + "&" + extra : u; }
+  async function pullStore(){
+    const r = await fetch(storeURL(), {cache:"no-store"});
+    if(!r.ok) throw new Error("store HTTP "+r.status);
+    return (await r.json()) || {};
+  }
+  const memberKey = name => Core.memberKey(name);
+  async function pushEntry(entry){
+    const body = {}; body[memberKey(entry.name)] = JSON.stringify(entry);
+    const r = await fetch(storeURL(), {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)});
+    if(!r.ok) throw new Error("store HTTP "+r.status);
+  }
+  async function deleteRemote(name){
+    await fetch(storeURL("key="+encodeURIComponent(memberKey(name))), {method:"DELETE"});
+  }
+  function mergeRemote(all){ return Core.mergeRecords(state, all); }
+  async function sync(announce){
+    const st = $("syncstatus");
+    st.textContent = "Syncing…";
+    try {
+      const all = await pullStore();
+      mergeRemote(all);
+      saveLocal();
+      st.textContent = "Shared ✓ " + new Date().toLocaleTimeString();
+      renderAll();
+      if(announce) flash("Synced " + n0(all) + " shared entries.");
+    } catch(err){
+      st.textContent = "Offline — local only";
+      if(announce) flash("Could not reach the shared sheet (" + err.message + "). Your entry is saved on this device.");
+    }
+  }
+  function n0(all){ let c=0; for(const k of Object.keys(all)) if(k.indexOf(STORE.prefix+":m:")===0) c++; return c; }
+
+  function flash(msg){ $("me-status").textContent = msg; }
+
+  // ---- rendering ----
+  function renderHeader(){
+    $("title").textContent = D.meta.title + " · " + D.meta.state;
+    $("subtitle").textContent = D.meta.subtitle;
+    $("srvlabel").textContent = D.meta.serverTimeLabel;
+    const now = new Date();
+    $("clock").textContent = "Your device clock: " + now.toLocaleString() + " · " + now.toLocaleTimeString("en-US",{timeZoneName:"short"});
+    $("foot").innerHTML = "";
+    const f = document.createElement("div");
+    f.textContent = "Times are " + D.meta.serverTimeLabel + ". Coverage targets are a guidance, not a rule — leads can rebalance. "
+      + "Data you save goes to a shared, public coordination sheet (no account, no server of ours); anyone with the link can edit it. "
+      + "This planner covers people and roles — for HQ tile placement see the SvS HQ planner. Updated " + D.meta.updated + ".";
+    $("foot").appendChild(f);
+  }
+  function renderIdentity(){
+    const e = myEntry();
+    $("whoami").textContent = me ? (me + (e ? " · " + Core.tier(e.tier).label : "")) : "Not signed in";
+  }
+  function fillSelects(){
+    const al = $("f-alliance"); al.innerHTML = "";
+    for(const a of D.alliances){ const o = document.createElement("option"); o.value = a.tag; o.textContent = a.rank + ". [" + a.tag + "] " + a.name; al.appendChild(o); }
+    al.value = D.meta.defaultAlliance;
+    const tl = $("f-tier"); tl.innerHTML = "";
+    for(const t of D.tiers){ const o = document.createElement("option"); o.value = t.id; o.textContent = t.label + " — " + t.hint; tl.appendChild(o); }
+    const tz = $("f-tz"); tz.innerHTML = "";
+    const off = document.createElement("option"); off.value = ""; off.textContent = "— server time —"; tz.appendChild(off);
+    for(let v=-12; v<=14; v++){ const o = document.createElement("option"); o.value = String(v); o.textContent = "UTC" + (v>=0?"+":"") + v; tz.appendChild(o); }
+  }
+  function loadMeForm(){
+    const e = myEntry() || Core.newEntry(me||"");
+    $("f-name").value = e.name||"";
+    $("f-alliance").value = e.alliance||D.meta.defaultAlliance;
+    $("f-tier").value = e.tier||"grass";
+    $("f-hq").value = (e.hq==null?"":e.hq);
+    $("f-tz").value = (e.tz==null?"":String(e.tz));
+    $("f-backup").value = (e.backupFor||[]).join(", ");
+    $("f-note").value = e.note||"";
+  }
+  function readMeForm(){
+    const e = myEntry() || Core.newEntry();
+    e.name = $("f-name").value.trim();
+    e.alliance = $("f-alliance").value;
+    e.tier = $("f-tier").value;
+    const hq = $("f-hq").value; e.hq = (hq===""?null:Number(hq));
+    const tz = $("f-tz").value; e.tz = (tz===""?null:Number(tz));
+    e.backupFor = $("f-backup").value.split(",").map(s=>s.trim()).filter(Boolean);
+    e.note = $("f-note").value.trim();
+    return e;
+  }
+
+  function renderPhaseBar(){
+    const bar = $("phasebar"); bar.innerHTML = "";
+    for(const p of D.phases){
+      const b = document.createElement("button");
+      b.textContent = p.label;
+      b.setAttribute("aria-pressed", String(p.id===curPhase));
+      b.addEventListener("click", () => { curPhase = p.id; sel = null; renderBoard(); });
+      bar.appendChild(b);
+    }
+    $("phasenote").textContent = Core.phase(curPhase).note;
+  }
+
+  function cellButton(text, cls, onClick, title){
+    const b = document.createElement("button");
+    b.className = "cell " + cls;
+    if(title) b.title = title;
+    if(typeof text === "string") b.textContent = text; else b.appendChild(text);
+    b.addEventListener("click", onClick);
+    return b;
+  }
+
+  function renderBoard(){
+    renderPhaseBar();
+    const p = Core.phase(curPhase);
+    const cov = Core.coverage(state, curPhase);
+    const mine = myEntry();
+    const wrap = $("boardwrap"); wrap.innerHTML = "";
+    const tbl = document.createElement("table");
+    const thead = document.createElement("thead");
+    const hr = document.createElement("tr");
+    const corner = document.createElement("th"); corner.className = "rowh"; corner.textContent = "Role"; hr.appendChild(corner);
+    for(const c of p.cols){ const th = document.createElement("th"); th.textContent = c.label; hr.appendChild(th); }
+    thead.appendChild(hr); tbl.appendChild(thead);
+    const tb = document.createElement("tbody");
+
+    // availability row
+    const ar = document.createElement("tr"); ar.className = "availrow";
+    const ah = document.createElement("td"); ah.className = "rowh";
+    ah.appendChild(el("span","rowlab","Online (my availability)"));
+    ah.appendChild(el("span","rowdet","Tap a block you can be online. Everyone sees it."));
+    ar.appendChild(ah);
+    for(const c of p.cols){
+      const on = mine && Core.availCols(mine,curPhase).indexOf(c.id)!==-1;
+      const td = document.createElement("td");
+      const b = cellButton(on?"✓":"+", "availcell"+(on?" on":""), () => toggleAvail(c.id), Core.localLabel(c.label, mine&&mine.tz, state.cfg.serverOffsetMin));
+      b.classList.add("cell");
+      td.appendChild(b); ar.appendChild(td);
+    }
+    tb.appendChild(ar);
+
+    // task rows
+    for(const r of p.rows){
+      const tr = document.createElement("tr");
+      const th = document.createElement("td"); th.className = "rowh";
+      th.appendChild(el("span","rowlab", r.label));
+      th.appendChild(el("span","rowdet", r.detail));
+      tr.appendChild(th);
+      for(const c of p.cols){
+        const id = Core.cellId(curPhase,r.id,c.id);
+        const cl = cov.cells[id];
+        const inIt = mine && mine.tasks && mine.tasks[id];
+        const td = document.createElement("td");
+        const label = document.createElement("span");
+        label.appendChild(el("b","", String(cl.count)));
+        label.appendChild(el("span","mini"," / "+(cl.min||0)));
+        const b = cellButton(label, "st-"+cl.status + (inIt?" mine":"") + (sel===id?" sel":""), () => selectCell(id),
+          cl.people.map(x=>x.name).join(", ") || "no one yet");
+        if(inIt) b.title = "You are on this slot";
+        td.appendChild(b); tr.appendChild(td);
+      }
+      tb.appendChild(tr);
+    }
+    tbl.appendChild(tb); wrap.appendChild(tbl);
+    renderDetail(cov);
+    renderSummary(cov,p);
+    renderBackups();
+  }
+  function el(tag,cls,text){ const n = document.createElement(tag); if(cls) n.className = cls; if(text!=null) n.textContent = text; return n; }
+
+  function toggleAvail(colId){
+    if(!requireMe()) return;
+    const e = myEntry();
+    const arr = Core.availCols(e,curPhase).slice();
+    const i = arr.indexOf(colId);
+    if(i===-1) arr.push(colId); else arr.splice(i,1);
+    e.avail[curPhase] = arr;
+    Core.setEntry(state,e); saveLocal(); pushQuiet(e);
+    renderBoard();
+  }
+  function toggleTask(id){
+    if(!requireMe()) return;
+    const e = myEntry();
+    e.tasks = e.tasks||{};
+    if(e.tasks[id]) delete e.tasks[id]; else e.tasks[id] = true;
+    Core.setEntry(state,e); saveLocal(); pushQuiet(e);
+    renderBoard();
+  }
+  function requireMe(){
+    if(me) return true;
+    alert("Enter your in-game name on the 'My availability' tab first, then tap Save.");
+    return false;
+  }
+  function pushQuiet(e){
+    pushEntry(e).then(()=>{ $("syncstatus").textContent = "Shared ✓ " + new Date().toLocaleTimeString(); })
+      .catch(err => { $("syncstatus").textContent = "Offline — saved on device"; });
+  }
+
+  function selectCell(id){ sel = (sel===id? null : id); renderBoard(); }
+  function renderDetail(cov){
+    const d = $("detail"); d.innerHTML = "";
+    if(!sel){ d.appendChild(el("p","note","Tap any cell to see who is on that slot and to join or leave it.")); return; }
+    const {phaseId,rowId,colId} = Core.cellParts(sel);
+    if(phaseId!==curPhase){ sel=null; return; }
+    const p = Core.phase(phaseId), r = p.rows.find(x=>x.id===rowId), c = p.cols.find(x=>x.id===colId);
+    const cl = cov.cells[sel], mine = myEntry();
+    const h = el("h3","", r.label + " · " + c.label + (mine&&mine.tz? " (your time " + Core.localLabel(c.label,mine.tz,state.cfg.serverOffsetMin) + ")" : ""));
+    d.appendChild(h);
+    d.appendChild(el("p","note", r.detail + "  Target: " + (cl.min||0) + " · Signed up: " + cl.count));
+    const list = el("div","plist");
+    if(cl.people.length===0) list.appendChild(el("span","status","No one yet."));
+    for(const x of cl.people){ const s = el("span","pill"); s.appendChild(el("span","", x.name)); s.appendChild(el("span","tier t-"+x.tier, Core.tier(x.tier).label)); list.appendChild(s); }
+    d.appendChild(list);
+    const inIt = mine && mine.tasks && mine.tasks[sel];
+    const btn = document.createElement("button");
+    btn.className = inIt ? "ghost danger" : "act";
+    btn.textContent = inIt ? "Leave this slot" : "Join this slot";
+    btn.addEventListener("click", () => toggleTask(sel));
+    d.appendChild(btn);
+  }
+
+  function renderSummary(cov,p){
+    const s = $("summary"); s.innerHTML = "";
+    const total = p.rows.filter(r=>(r.min||0)>0).length * p.cols.length;
+    const covered = Object.keys(cov.cells).filter(id=>{ const cl=cov.cells[id]; return (cl.min||0)>0 && cl.status==="ok"; }).length;
+    s.appendChild(el("p","note", covered + " of " + total + " targeted slots fully covered."));
+    if(cov.gaps.length===0){ s.appendChild(el("p","","No gaps — every targeted slot has someone.")); return; }
+    const ul = el("ul","gaps");
+    for(const g of cov.gaps){
+      const online = Core.onlineInCol(state,curPhase,g.colId).filter(e => e.tier===g.wants || e.tier==="core" || e.tier==="lead" || e.tier==="mid");
+      const names = online.map(e=>e.name).slice(0,6).join(", ");
+      const li = el("li","", g.rowLabel + " @ " + g.colLabel + " — " + (g.status==="gap"?"no one":g.count+" of "+g.min) + ". Online who could help: " + (names||"nobody yet"));
+      ul.appendChild(li);
+    }
+    s.appendChild(ul);
+  }
+  function renderBackups(){
+    const b = $("backups"); b.innerHTML = "";
+    const gaps = Core.backupGaps(state,curPhase);
+    if(gaps.length===0){ b.appendChild(el("p","","Every core / leadership player who is online has a backup online with them.")); return; }
+    for(const g of gaps){
+      const w = el("div","warn"+(g.severity==="low"?" low":""));
+      w.textContent = g.member + " (" + Core.tier(g.tier).label + ") is online " + g.colLabel
+        + " with " + g.support + " other strong player(s) online and no named backup. "
+        + (g.severity==="high" ? "Nobody to cover if their phone dies — ask for a reserve." : "Assign a named reserve to be safe.");
+      b.appendChild(w);
+    }
+  }
+
+  function renderGuide(){
+    $("guide-head").textContent = D.guide.headline;
+    $("guide-intro").textContent = D.guide.intro;
+    const body = $("guide-body"); body.innerHTML = "";
+    for(const t of D.guide.tiers){
+      const card = el("div","card");
+      const h = el("h3","", t.title);
+      card.appendChild(h);
+      const ul = document.createElement("ul");
+      for(const b of t.bullets) ul.appendChild(el("li","",b));
+      card.appendChild(ul); body.appendChild(card);
+    }
+  }
+
+  function renderTools(){ $("ex-json").value = Core.exportJSON(state); }
+
+  function renderAll(){
+    renderIdentity(); renderBoard(); renderGuide(); renderTools(); loadMeForm(); renderMeStatus();
+  }
+  function renderMeStatus(){
+    const e = myEntry();
+    if(!me){ $("me-status").textContent = ""; return; }
+    if(!e){ $("me-status").textContent = me + " is not saved yet."; return; }
+    const blocks = Core.availCols(e,curPhase).length;
+    $("me-status").textContent = "Saved as " + e.name + " · " + Core.tier(e.tier).label + (e.hq? " · HQ"+e.hq : "") + " · " + blocks + " online blocks this phase.";
+  }
+
+  // ---- tabs ----
+  function showTab(name){
+    for(const b of document.querySelectorAll("#tabs button")) b.setAttribute("aria-selected", String(b.dataset.tab===name));
+    for(const id of ["me","board","guide","tools"]) $("tab-"+id).hidden = (id!==name);
+    if(name==="tools") renderTools();
+  }
+
+  // ---- events ----
+  function wire(){
+    for(const b of document.querySelectorAll("#tabs button")) b.addEventListener("click", () => showTab(b.dataset.tab));
+    $("btn-save").addEventListener("click", () => {
+      const e = readMeForm();
+      const v = Core.validate(e);
+      if(!v.ok){ flash(v.errors.join(" ")); return; }
+      setMe(e.name);
+      Core.setEntry(state,e); saveLocal();
+      flash("Saved. Pushing to the shared sheet…");
+      pushEntry(e).then(() => { $("syncstatus").textContent = "Shared ✓ " + new Date().toLocaleTimeString(); flash("Saved and shared as " + e.name + "."); })
+        .catch(err => { $("syncstatus").textContent = "Offline — saved on device"; flash("Saved on this device; shared sheet unreachable (" + err.message + ")."); });
+      renderAll();
+    });
+    $("btn-load").addEventListener("click", () => { loadMeForm(); flash("Loaded."); });
+    $("btn-del").addEventListener("click", () => {
+      if(!requireMe()) return;
+      if(!confirm("Remove " + me + " from this device and the shared sheet?")) return;
+      Core.removeEntry(state, me); saveLocal();
+      deleteRemote(me).catch(()=>{});
+      setMe(""); renderAll(); flash("Removed.");
+    });
+    $("btn-sync").addEventListener("click", () => sync(true));
+    $("btn-copy").addEventListener("click", () => { const t=$("ex-json"); t.select(); try{ document.execCommand("copy"); }catch(e){} flash("Copied export."); });
+    $("btn-download").addEventListener("click", () => {
+      const blob = new Blob([Core.exportJSON(state)], {type:"application/json"});
+      const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "svs-family-planner.json"; a.click();
+      setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
+    });
+    $("btn-import").addEventListener("click", () => {
+      const txt = $("im-json").value.trim(); if(!txt) return;
+      try {
+        let r;
+        if(txt.charAt(0)==="{" || txt.charAt(0)==="[") r = Core.importJSON(txt, state);
+        else r = Core.parseLines(txt, state);
+        saveLocal(); renderAll();
+        $("import-status").textContent = "Merged: " + r.added + " added, " + (r.updated||0) + " updated.";
+        if(r.added) pushAll().catch(()=>{});
+      } catch(err){ $("import-status").textContent = err.message; }
+    });
+    $("btn-lines").addEventListener("click", () => {
+      const txt = $("im-lines").value.trim(); if(!txt) return;
+      const r = Core.parseLines(txt, state); saveLocal(); renderAll();
+      $("lines-status").textContent = "Added " + r.added + " name(s).";
+      pushAll().catch(()=>{});
+    });
+  }
+  async function pushAll(){
+    for(const e of Object.values(state.members)){ try { await pushEntry(e); } catch(err){ return; } }
+    $("syncstatus").textContent = "Shared ✓ " + new Date().toLocaleTimeString();
+  }
+
+  loadLocal(); fillSelects(); wire(); showTab("me"); renderAll();
+  sync(false);
+  setInterval(() => sync(false), 60000);
+}
+if (typeof document !== "undefined" && document.getElementById("root")) initUI();
+</script>
+</body></html>
